@@ -236,9 +236,13 @@ iSight.prototype.handleStreamRequest = function(request) {
 
 iSight.prototype.createCameraControlService = function() {
   var controlService = new Service.CameraControl();
-
   this.services.push(controlService);
 }
+const { askForCameraAccess } = require('node-mac-permissions')
+
+askForCameraAccess().then(status => {
+  console.log(`Access to Camera is ${status}`)
+})
 
 // Private
 
